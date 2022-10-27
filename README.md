@@ -1,4 +1,5 @@
 ## Canopybot 
+Code for the project "Development of a small agricultural robot for under canopy inspection of Maize Plants". 
 
 
 ## The repository contains the following ros packages: 
@@ -20,4 +21,4 @@ $ catkin_build
 $ source devel/setup.bash
 ```
 
- @author : Utkarsh Bajpai, 2022
+ @author : Utkarsh Bajpai, Univerity of Bonn, 2022 
