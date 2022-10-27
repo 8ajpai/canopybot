@@ -3,7 +3,7 @@
 
 ## The repository contains the following ros packages: 
 
- - canopybot_model : Contains URDF and Mesh models of the robot.
+ - canopybot_model : Contains URDF model, Meshes, World files and launch files to spawn the robot in Gazebo.
  - canopybot_navigation : Contains code for implementing navigation of the robot. 
  - canopybot_vision : Contains code for scene understanding, semantics, etc.
  - canopybot_hardware : Contains code that interfaces to the real robot.
