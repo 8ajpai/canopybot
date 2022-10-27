@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  
+	<!-- Robot pose -->
+	<!-- <arg name="robot_namespace" default="/"/> -->
+	<arg name="x" default="0"/>
+	<arg name="y" default="0"/>
+	<arg name="z" default="0.001"/> <!--0.001-->
+	<arg name="roll" default="0"/>
+	<arg name="pitch" default="0"/>
+	<arg name="yaw" default="0"/> <!--1.57 - 90 degree-->
+	<arg name="robot_name" default="canopybot"/>
+
+	<!-- World File -->
+	<!--<arg name="world_file" default="$(find atom)/worlds/big_field.world"/>-->
+	<arg name="world_file" default="$(find canopybot_model)/worlds/empty.world"/>
+	<arg name="world_path" default="$(find canopybot_model)/worlds/"/>
+  	<arg name="world_name" default="generated.world"/>
+	<!-- Launch Gazebo World -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="use_sim_time" value="true"/>
+		<arg name="verbose" value="false"/>	
+		<arg name="debug" value="false"/>
+		<arg name="gui" value="true" />
+		<!--<arg name="world_name" value="$(arg world_path)$(arg world_name)"/>-->
+		<arg name="world_name" value="$(arg world_file)"/>
+	</include>
+
+
+  <!-- Optionally disable teleop control -->
+  <!-- <arg name="joystick" default="true" /> -->
+
+  <!-- <group ns="$(arg robot_namespace)"> -->
+
+    <!-- <group if="$(arg multimaster)">
+      <include file="$(find husky_description)/launch/description.launch" >
+        <arg name="robot_namespace" value="$(arg robot_namespace)"/>
+      </include>
+
+      <include file="$(find multimaster_launch)/launch/multimaster_gazebo_robot.launch">
+        <arg name="gazebo_interface" value="$(find husky_control)/config/gazebo_interface.yaml" />
+        <arg name="robot_namespace" value="$(arg robot_namespace)"/>
+      </include> -->
+
+      <!-- For multimaster bringup, need to load the controller config -->
+      <!-- <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
+    </group> -->
+
+    <!-- For single master bringup, run robot control on the gazebo master -->
+    <!-- Note that husky_description/description.launch is already included in husky_control/control.launch. -->
+    <!-- <group unless="$(arg multimaster)"> -->
+      <!-- <include file="$(find atom)/husky_control/launch/control.launch"> -->
+        <!-- <arg name="multimaster" value="$(arg multimaster)"/> -->
+      <!-- </include> -->
+      <!-- <include file="$(find atom)/husky_control/launch/teleop.launch"> -->
+        <!-- <arg name="joystick" value="$(arg joystick)" /> -->
+      <!-- </include> -->
+    <!-- </group> -->
+	<!-- <rosparam command="load" file="$(find atom)/launch/teleop_ps4.yaml" /> 
+    <rosparam command="load" file="$(find atom)/launch/joystick_param.yaml" />-->
+		<!-- Launch other relevant files-->
+	<include file="$(find canopybot_model)/launch/robot_description.launch"/>
+
+	<!-- Spawn My Robot -->
+	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+		args="-urdf -param robot_description -model canopybot
+			  -x $(arg x) -y $(arg y) -z $(arg z)
+			  -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
+
+	<!--launch rviz-->
+	<node name="rviz" pkg="rviz" type="rviz" respawn="false"
+		  args="-d $(find canopybot_model)/default.rviz"/>
+<!-- </group> -->
+
+</launch>

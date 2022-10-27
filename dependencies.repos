@@ -1,0 +1,10 @@
+repositories:
+  teleop_twist_keyboard:
+    type: git
+    url: https://github.com/ros-teleop/teleop_twist_keyboard.git
+    version: master
+  velodyne_simulator:
+    type: git
+    url: https://bitbucket.org/DataspeedInc/velodyne_simulator.git
+    version: master
+
