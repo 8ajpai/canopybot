@@ -7,4 +7,3 @@ repositories:
     type: git
     url: https://bitbucket.org/DataspeedInc/velodyne_simulator.git
     version: master
-
