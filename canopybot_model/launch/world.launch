@@ -14,7 +14,7 @@
 
 	<!-- World File -->
 	<!--<arg name="world_file" default="$(find atom)/worlds/big_field.world"/>-->
-	<arg name="world_file" default="$(find canopybot_model)/worlds/empty.world"/>
+	<arg name="world_file" default="$(find canopybot_model)/worlds/pree.world"/>
 	<arg name="world_path" default="$(find canopybot_model)/worlds/"/>
   	<arg name="world_name" default="generated.world"/>
 	<!-- Launch Gazebo World -->
